@@ -14,16 +14,22 @@ class AuthController extends ApplicationController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmationController = TextEditingController();
+  static final AuthController _authController = AuthController._internal();
 
-  AuthController({
-    StateUpdater setState,
-    this.email = '',
-    this.password = '',
-    this.passwordConfirmation = '',
-    this.passwordConfirmed = false,
-    this.showLogin = true,
-    this.validationErrorMessage = '',
-  }): super(setState: setState);
+  factory AuthController({ StateUpdater setState }) {
+    _authController.setState = setState;
+    _authController.email = '';
+    _authController.password = '';
+    _authController.passwordConfirmation = '';
+    _authController.passwordConfirmed = false;
+    _authController.showLogin = true;
+    _authController.validationErrorMessage = '';
+
+    return _authController;
+  }
+
+  AuthController._internal();
+
 
   void _handleEmailChange() {
     this.email = this.emailController.text.trim();
