@@ -10,7 +10,7 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
       child: MaterialApp(
-        title: 'Max Fitness',
+        title: 'APP Name',
         theme: ThemeData(
           primaryColor: Color.fromRGBO(50, 65, 85, 1),
           textTheme: TextTheme(

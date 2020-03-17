@@ -9,7 +9,8 @@ class AuthController extends ApplicationController {
   String passwordConfirmation;
   bool passwordConfirmed;
   bool showLogin;
-  String validationErrorMessage;
+  bool authInProgress;
+  String _validationErrorMessage;
   AuthService _authService = AuthService();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -18,12 +19,13 @@ class AuthController extends ApplicationController {
 
   factory AuthController({ StateUpdater setState }) {
     _authController.setState = setState;
+    _authController.authInProgress = false;
     _authController.email = '';
     _authController.password = '';
     _authController.passwordConfirmation = '';
     _authController.passwordConfirmed = false;
     _authController.showLogin = true;
-    _authController.validationErrorMessage = '';
+    _authController._validationErrorMessage = '';
 
     return _authController;
   }
@@ -64,21 +66,36 @@ class AuthController extends ApplicationController {
     this._handlePasswordChange();
     this._handlePasswordConfirmationChange();
 
+    this.setState(() {
+      this.authInProgress = true;
+    });
     User user = this.showLogin
       ? await this._authService.signInWithEmailAndPassword(email: this.email, password: this.password)
       : await this._authService.signUpWithEmailAndPassword(email: this.email, password: this.password);
     if (user == null) {
       this.setState(() {
-        this.validationErrorMessage = this._authService.popError();
+        this._validationErrorMessage = this._authService.popError();
+        this.authInProgress = false;
       });
     } else {
       this.setState(() {
-        this.validationErrorMessage = '';
+        this._validationErrorMessage = '';
+        this.authInProgress = false;
       });
       this.emailController.clear();
       this.passwordController.clear();
       this.passwordConfirmationController.clear();
     }
+  }
+
+  String get validationErrorMessage {
+    final String message = this._validationErrorMessage;
+    this._validationErrorMessage = '';
+    return message;
+  }
+
+  bool get validationErrorsPresent {
+    return this._validationErrorMessage.isNotEmpty;
   }
 
   void showLoginForm() {

@@ -5,7 +5,7 @@ import 'package:hw_4/src/views/shared/button.dart';
 import 'package:hw_4/src/views/shared/input.dart';
 
 Widget authForm({ BuildContext context, String label, AuthController controller}) {
-  if (controller.validationErrorMessage.isNotEmpty) Fluttertoast.showToast(
+  if (controller.validationErrorsPresent) Fluttertoast.showToast(
     msg: controller.validationErrorMessage,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.CENTER,
@@ -60,6 +60,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
           padding: EdgeInsets.only(left: 20, right: 20),
           child: Container(
             child: button(
+              actionInProgress: controller.authInProgress,
               context: context,
               onPressed: controller.authenticateUser,
               text: label,

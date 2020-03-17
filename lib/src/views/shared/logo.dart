@@ -5,7 +5,7 @@ Widget logo() {
     padding: EdgeInsets.only(top: 100),
     child: Container(
       child: Align(
-        child: Text('MAXFIT', style: TextStyle(
+        child: Text('APP NAME', style: TextStyle(
           fontSize: 45,
           fontWeight: FontWeight.bold,
           color: Colors.white,

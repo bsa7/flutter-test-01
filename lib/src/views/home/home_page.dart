@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
             )
           ],
           leading: Icon(Icons.fitness_center),
-          title: Text('BSAFit'),
+          title: Text('APPBar name'),
         ),
         backgroundColor: Theme.of(context).primaryColor,
         body: WorkoutList(),
