@@ -23,19 +23,22 @@ class _AuthorizationPageState extends State<AuthorizationPage> with SingleTicker
 
     return Scaffold(
       backgroundColor: themeBackgroundColor,
-      body: Column(
-        children: <Widget>[
-          logo(),
-          authForm(
-            context: context,
-            label: authController.showLogin ? 'LOGIN' : 'REGISTER',
-            controller: authController,
-          ),
-          authFormNavigationBar(
-            controller: authController,
-            context: context,
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            logo(),
+            authForm(
+              context: context,
+              label: authController.showLogin ? 'LOGIN' : 'REGISTER',
+              controller: authController,
+            ),
+            authFormNavigationBar(
+              controller: authController,
+              context: context,
+            ),
+          ],
+        ),
+        scrollDirection: Axis.vertical,
       ),
     );
   }
