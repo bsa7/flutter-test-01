@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "502160670289",
+    "firebase_url": "https://bsafit-development.firebaseio.com",
+    "project_id": "bsafit-development",
+    "storage_bucket": "bsafit-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502160670289:android:1b10903057074520d34270",
+        "android_client_info": {
+          "package_name": "com.bsadevelopment.bsafit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502160670289-nvho1uec6jbt7d560jcg9fo16uvhg9ks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bsadevelopment.bsafit",
+            "certificate_hash": "7ae156871194dba6301c1962a24e60a5cfe84718"
+          }
+        },
+        {
+          "client_id": "502160670289-avp6sa3bm4eu5u0lvcb856is3ka0ud64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcYLoGFx9pb3IhEpMU1EMAfoJv_t4Q04k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502160670289-avp6sa3bm4eu5u0lvcb856is3ka0ud64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1",
+  "debug_mode": true
+}

@@ -1,4 +1,4 @@
-package com.example.hw_4
+package com.bsadevelopment.bsafit
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
