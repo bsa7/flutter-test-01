@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget logo() {
   return Padding(
-    padding: EdgeInsets.only(top: 100),
+    padding: EdgeInsets.only(top: 50),
     child: Container(
       child: Align(
         child: Text('APP NAME', style: TextStyle(

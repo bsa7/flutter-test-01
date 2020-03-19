@@ -19,7 +19,7 @@ Widget tileSubtitle(BuildContext context, Workout workout) {
       indicatorLevel = 1;
       break;
   }
-  final themePrimaryColor = Theme.of(context).textTheme.title.color;
+  final themePrimaryColor = Theme.of(context).textTheme.headline1.color;
 
   return Row(
     children: <Widget>[

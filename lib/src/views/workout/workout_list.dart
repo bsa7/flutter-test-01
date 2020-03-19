@@ -24,7 +24,7 @@ class WorkoutList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).textTheme.title.color;
+    final primaryColor = Theme.of(context).textTheme.headline1.color;
 
     return Container(
       child: ListView.builder(

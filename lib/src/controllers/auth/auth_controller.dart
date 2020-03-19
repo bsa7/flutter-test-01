@@ -152,6 +152,21 @@ class AuthController extends ApplicationController {
     }
   }
 
+  void signInWithGoogle() async {
+    this.setState(() {
+      this.authInProgress = true;
+    });
+
+    User user = await this._authService.signInWithGoogle();
+    if (user == null) {
+      this.setState(() {
+        this._validationErrorMessage = this._authService.popError();
+        this.authInProgress = false;
+        this.showLoginForm();
+      });
+    }
+  }
+
   void authAction() {
     switch (this.showMode) {
       case ShowMode.login: {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hw_4/src/controllers/auth/auth_controller.dart';
 import 'package:hw_4/src/views/shared/logo.dart';
 import 'package:hw_4/src/views/auth/components/auth_form_navigation_bar.dart';
+import 'package:hw_4/src/views/auth/components/auth_providers_bar.dart';
 import 'components/auth_form.dart';
 
 
@@ -27,6 +28,10 @@ class _AuthorizationPageState extends State<AuthorizationPage> with SingleTicker
         child: Column(
           children: <Widget>[
             logo(),
+            authProvidersBar(
+              controller: authController,
+              context: context,
+            ),
             authForm(
               context: context,
               label: authController.showModeLabel,

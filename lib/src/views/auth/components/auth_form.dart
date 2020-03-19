@@ -20,6 +20,15 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
     child: Column(
       children: <Widget>[
         SizedBox(height: 20),
+        Row(
+          children: <Widget>[
+            Padding(
+              child: Text('Or sign with email and password', style: TextStyle(color: Colors.white)),
+              padding: EdgeInsets.all(10),
+            )
+          ],
+          mainAxisAlignment: MainAxisAlignment.center,
+        ),
         Padding(
           padding: EdgeInsets.only(bottom: 20, top: 10),
           child: input(

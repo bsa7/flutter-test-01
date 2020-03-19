@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:hw_4/src/models/user.dart';
 import 'package:hw_4/src/views/auth/auth_page.dart';
 import 'package:hw_4/src/views/home/home_page.dart';
-import 'package:provider/provider.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({ Key key }) : super(key: key);
