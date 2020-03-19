@@ -29,7 +29,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> with SingleTicker
             logo(),
             authForm(
               context: context,
-              label: authController.showLogin ? 'LOGIN' : 'REGISTER',
+              label: authController.showModeLabel,
               controller: authController,
             ),
             authFormNavigationBar(

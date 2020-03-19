@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hw_4/src/controllers/auth/auth_controller.dart';
 import 'package:hw_4/src/views/shared/button.dart';
 import 'package:hw_4/src/views/shared/input.dart';
+import 'package:hw_4/src/constants/auth.dart';
 
 Widget authForm({ BuildContext context, String label, AuthController controller}) {
   if (controller.validationErrorsPresent) Fluttertoast.showToast(
@@ -28,15 +29,22 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
             obscure: false,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(bottom: 20),
-          child: input(
-            controller: controller.passwordController,
-            hint: 'PASSWORD',
-            icon: Icon(Icons.lock),
-            obscure: true,
-            onChanged: controller.onEditPassword,
+        AnimatedContainer(
+          child: ClipRect(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: input(
+                controller: controller.passwordController,
+                hint: 'PASSWORD',
+                icon: Icon(Icons.lock),
+                obscure: true,
+                onChanged: controller.onEditPassword,
+              ),
+            ),
           ),
+          curve: Curves.easeInCubic,
+          duration: Duration(milliseconds: 300),
+          height: controller.showMode != ShowMode.forgottenPassword ? 100 : 0,
         ),
         AnimatedContainer(
           child: ClipRect(
@@ -53,7 +61,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
           ),
           curve: Curves.easeInCubic,
           duration: Duration(milliseconds: 300),
-          height: controller.showLogin ? 0 : 100,
+          height: controller.showMode == ShowMode.registration ? 100 : 0,
         ),
         SizedBox(height: 20),
         Padding(

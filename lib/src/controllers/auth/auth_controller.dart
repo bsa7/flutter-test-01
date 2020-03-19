@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hw_4/src/controllers/application_controller.dart';
 import 'package:hw_4/src/models/user.dart';
 import 'package:hw_4/src/services/auth.dart';
+import 'package:hw_4/src/constants/auth.dart';
 
 class AuthController extends ApplicationController {
   String email;
   String password;
   String passwordConfirmation;
   bool passwordConfirmed;
-  bool showLogin;
   bool authInProgress;
   String _validationErrorMessage;
+  ShowMode showMode;
   AuthService _authService = AuthService();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -24,7 +25,7 @@ class AuthController extends ApplicationController {
     _authController.password = '';
     _authController.passwordConfirmation = '';
     _authController.passwordConfirmed = false;
-    _authController.showLogin = true;
+    _authController.showMode = ShowMode.login;
     _authController._validationErrorMessage = '';
 
     return _authController;
@@ -32,6 +33,18 @@ class AuthController extends ApplicationController {
 
   AuthController._internal();
 
+  String get showModeLabel {
+    if (this.showMode == ShowMode.login) {
+      return 'LOGIN';
+    }
+    if (this.showMode == ShowMode.registration) {
+      return 'REGISTER';
+    }
+    if (this.showMode == ShowMode.forgottenPassword) {
+      return 'SEND ME A LETTER';
+    }
+    return 'ERROR';
+  }
 
   void _handleEmailChange() {
     this.email = this.emailController.text.trim();
@@ -51,11 +64,13 @@ class AuthController extends ApplicationController {
 
   bool _validatePassword() {
     bool passwordIsValid = this.passwordController.text.isNotEmpty;
-    if (this.showLogin) {
+    if (this.showMode == ShowMode.login) {
       return passwordIsValid;
-    } else {
+    }
+    if (this.showMode == ShowMode.registration) {
       return passwordIsValid && this.passwordController.text == this.passwordConfirmationController.text;
     }
+    return true;
   }
 
   void authenticateUser() async {
@@ -69,7 +84,7 @@ class AuthController extends ApplicationController {
     this.setState(() {
       this.authInProgress = true;
     });
-    User user = this.showLogin
+    User user = this.showMode == ShowMode.login
       ? await this._authService.signInWithEmailAndPassword(email: this.email, password: this.password)
       : await this._authService.signUpWithEmailAndPassword(email: this.email, password: this.password);
     if (user == null) {
@@ -100,13 +115,19 @@ class AuthController extends ApplicationController {
 
   void showLoginForm() {
     super.setState(() {
-      this.showLogin = true;
+      this.showMode = ShowMode.login;
     });
   }
 
   void showRegisterForm() {
     super.setState(() {
-      this.showLogin = false;
+      this.showMode = ShowMode.registration;
+    });
+  }
+
+  void showForgottePasswordForm() {
+    super.setState(() {
+      this.showMode = ShowMode.forgottenPassword;
     });
   }
 
