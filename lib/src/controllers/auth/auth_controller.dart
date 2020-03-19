@@ -43,7 +43,7 @@ class AuthController extends ApplicationController {
     if (this.showMode == ShowMode.forgottenPassword) {
       return 'SEND ME A LETTER';
     }
-    return 'ERROR';
+    return 'ERROR - see authController.showMode';
   }
 
   void _handleEmailChange() {
@@ -73,20 +73,46 @@ class AuthController extends ApplicationController {
     return true;
   }
 
-  void authenticateUser() async {
+  void _login() async {
     if (!this._validateEmail()) return;
     if (!this._validatePassword()) return;
+
+    this.setState(() {
+      this.authInProgress = true;
+    });
+
+    this._handleEmailChange();
+    this._handlePasswordChange();
+
+    User user = await this._authService.signInWithEmailAndPassword(email: this.email, password: this.password);
+    if (user == null) {
+      this.setState(() {
+        this._validationErrorMessage = this._authService.popError();
+        this.authInProgress = false;
+      });
+    } else {
+      this.setState(() {
+        this._validationErrorMessage = '';
+        this.authInProgress = false;
+      });
+      this.emailController.clear();
+      this.passwordController.clear();
+    }
+  }
+
+  void _register() async {
+    if (!this._validateEmail()) return;
+    if (!this._validatePassword()) return;
+
+    this.setState(() {
+      this.authInProgress = true;
+    });
 
     this._handleEmailChange();
     this._handlePasswordChange();
     this._handlePasswordConfirmationChange();
 
-    this.setState(() {
-      this.authInProgress = true;
-    });
-    User user = this.showMode == ShowMode.login
-      ? await this._authService.signInWithEmailAndPassword(email: this.email, password: this.password)
-      : await this._authService.signUpWithEmailAndPassword(email: this.email, password: this.password);
+    User user = await this._authService.signUpWithEmailAndPassword(email: this.email, password: this.password);
     if (user == null) {
       this.setState(() {
         this._validationErrorMessage = this._authService.popError();
@@ -100,6 +126,46 @@ class AuthController extends ApplicationController {
       this.emailController.clear();
       this.passwordController.clear();
       this.passwordConfirmationController.clear();
+    }
+  }
+
+  void _restorePassword() async {
+    if (!this._validateEmail()) return;
+
+    this.setState(() {
+      this.authInProgress = true;
+    });
+
+    this._handleEmailChange();
+
+    if (await this._authService.restorePassword(email: this.email)) {
+      this.emailController.clear();
+      this.setState(() {
+        this.authInProgress = false;
+        this.showLoginForm();
+      });
+    } else {
+      this.setState(() {
+        this._validationErrorMessage = this._authService.popError();
+        this.authInProgress = false;
+      });
+    }
+  }
+
+  void authAction() {
+    switch (this.showMode) {
+      case ShowMode.login: {
+        this._login();
+        break;
+      }
+      case ShowMode.registration: {
+        this._register();
+        break;
+      }
+      case ShowMode.forgottenPassword: {
+        this._restorePassword();
+        break;
+      }
     }
   }
 

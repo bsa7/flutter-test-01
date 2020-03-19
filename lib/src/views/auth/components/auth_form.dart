@@ -70,7 +70,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
             child: button(
               actionInProgress: controller.authInProgress,
               context: context,
-              onPressed: controller.authenticateUser,
+              onPressed: controller.authAction,
               text: label,
             ),
             height: 50,
