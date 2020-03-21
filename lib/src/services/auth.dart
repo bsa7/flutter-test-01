@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hw_4/src/models/user.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FacebookLogin _facebookSignIn = FacebookLogin();
 
   List<String> _authErrors = [];
 
@@ -23,6 +25,20 @@ class AuthService {
     try {
       AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
+      return User.fromFirebase(user);
+    } catch(e) {
+      _authErrors.add(e.message);
+      return null;
+    }
+  }
+
+  Future<User> signInWithFacebook() async {
+    try {
+      final FacebookLoginResult fbLoginResult = await _facebookSignIn.logIn(['email']);
+      final token = fbLoginResult.accessToken.token;
+      AuthCredential fbCredential = FacebookAuthProvider.getCredential(accessToken: token);
+      AuthResult authResult = await _firebaseAuth.signInWithCredential(fbCredential);
+      FirebaseUser user = authResult.user;
       return User.fromFirebase(user);
     } catch(e) {
       _authErrors.add(e.message);

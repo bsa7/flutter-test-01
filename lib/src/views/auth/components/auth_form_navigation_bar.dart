@@ -8,7 +8,7 @@ Widget authFormNavigationBar({ AuthController controller, BuildContext context }
       Padding(
         child: GestureDetector(
           child: Text(
-            controller.showMode == ShowMode.registration ? 'Not registered yet? Register!' : 'Already registered? Login!',
+            controller.showMode == ShowMode.login ? 'Not registered yet? Register!' : 'Already registered? Login!',
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
           onTap: () {

@@ -167,6 +167,21 @@ class AuthController extends ApplicationController {
     }
   }
 
+  void signInWithFacebook() async {
+    this.setState(() {
+      this.authInProgress = true;
+    });
+
+    User user = await this._authService.signInWithFacebook();
+    if (user == null) {
+      this.setState(() {
+        this._validationErrorMessage = this._authService.popError();
+        this.authInProgress = false;
+        this.showLoginForm();
+      });
+    }
+  }
+
   void authAction() {
     switch (this.showMode) {
       case ShowMode.login: {

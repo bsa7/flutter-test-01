@@ -23,7 +23,23 @@ Widget authProvidersBar({ AuthController controller, BuildContext context }) {
                 color: Colors.blue,
                 textColor: Colors.white,
                 child: Icon(
-                  CustomIcons.google,
+                  CustomIcons.google_1,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(16),
+                shape: CircleBorder(),
+              ),
+            ),
+            padding: EdgeInsets.all(10),
+          ),
+          Padding(
+            child: Container(
+              child: MaterialButton(
+                onPressed: controller.signInWithFacebook,
+                color: Color(0xff2851a3),
+                textColor: Colors.white,
+                child: Icon(
+                  CustomIcons.facebook,
                   size: 24,
                 ),
                 padding: EdgeInsets.all(16),

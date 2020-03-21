@@ -53,7 +53,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
           ),
           curve: Curves.easeInCubic,
           duration: Duration(milliseconds: 300),
-          height: controller.showMode != ShowMode.forgottenPassword ? 100 : 0,
+          height: controller.showMode != ShowMode.forgottenPassword ? 80 : 0,
         ),
         AnimatedContainer(
           child: ClipRect(
@@ -70,7 +70,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
           ),
           curve: Curves.easeInCubic,
           duration: Duration(milliseconds: 300),
-          height: controller.showMode == ShowMode.registration ? 100 : 0,
+          height: controller.showMode == ShowMode.registration ? 80 : 0,
         ),
         SizedBox(height: 20),
         Padding(
