@@ -38,3 +38,4 @@ lib/generated_plugin_registrant.dart
 
 # exclude api keys
 android/app/google-services.json
+android/app/src/main/res/values/strings.xml
