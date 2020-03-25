@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return Scaffold(
       appBar: ApplicationBar(authController: authController),
       body: WorkoutList(),
-      drawer: SidebarMenu(),
+      drawer: SidebarMenu(authController: authController),
     );
   }
 }

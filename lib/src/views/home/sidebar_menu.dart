@@ -1,50 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:hw_4/src/controllers/auth/auth_controller.dart';
+import 'package:hw_4/src/models/user.dart';
+import 'package:hw_4/src/views/shared/user_cached_avatar.dart';
+import 'package:provider/provider.dart';
 
 class SidebarMenu extends StatelessWidget {
+  final AuthController authController;
+  SidebarMenu({ this.authController });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData currentTheme = Theme.of(context);
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final User user = Provider.of<User>(context);
 
-    return Container(
-      child: Padding(
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Padding(
-                  child: Text('App Config'),
-                  padding: EdgeInsets.all(10),
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            accountName: Text(user.displayName),
+            accountEmail: Text(user.email),
+            arrowColor: Colors.white,
+            currentAccountPicture: ClipOval(
+              child: Container(
+                child: UserCachedAvatar(user: user),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                 ),
-                Padding(
-                  child: GestureDetector(
-                    child: Icon(Icons.close),
-                    onTap: Navigator.of(context).pop,
-                  ),
-                  padding: EdgeInsets.all(10),
-                ),
-              ],
-              mainAxisAlignment: MainAxisAlignment.end,
+              ),
             ),
-            Row(
-              children: <Widget>[
-                Center(
-                  child: Text('My Account'),
-                ),
-              ],
-            ),
-          ],
-        ),
-        padding: EdgeInsets.all(10),
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: authController.logoutUser,
+          ),
+        ],
       ),
-      decoration: BoxDecoration(
-        color: currentTheme.accentColor,
-        shape: BoxShape.rectangle,
-      ),
-      height: screenHeight,
-      width: screenWidth,
     );
   }
 }
+
