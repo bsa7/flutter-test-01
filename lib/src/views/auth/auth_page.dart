@@ -19,7 +19,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData currentTheme = Theme.of(context);
+    // final ThemeData currentTheme = Theme.of(context);
     authController ??= AuthController(setState: setState);
 
     return Scaffold(

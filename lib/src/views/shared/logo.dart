@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget logo({ BuildContext context }) {
-  final ThemeData currentTheme = Theme.of(context);
+  // final ThemeData currentTheme = Theme.of(context);
 
   return Padding(
     padding: EdgeInsets.only(top: 50),

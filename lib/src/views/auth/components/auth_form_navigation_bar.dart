@@ -3,7 +3,7 @@ import 'package:hw_4/src/controllers/auth/auth_controller.dart';
 import 'package:hw_4/src/constants/auth.dart';
 
 Widget authFormNavigationBar({ AuthController controller, BuildContext context }) {
-  final ThemeData currentTheme = Theme.of(context);
+  // final ThemeData currentTheme = Theme.of(context);
 
   return Column(
     children: <Widget>[
