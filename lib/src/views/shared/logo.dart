@@ -10,7 +10,6 @@ Widget logo({ BuildContext context }) {
         child: Text('APP NAME', style: TextStyle(
           fontSize: 45,
           fontWeight: FontWeight.bold,
-          color: currentTheme.primaryColor,
         )),
       ),
     ),

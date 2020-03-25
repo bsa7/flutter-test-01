@@ -34,7 +34,6 @@ class WorkoutList extends StatelessWidget {
             elevation: 2.0,
             margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Container(
-              decoration: BoxDecoration(color: currentTheme.backgroundColor),
               child: tile(context: context, workout: workouts[i])
             ),
           );

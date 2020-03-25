@@ -25,7 +25,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
         Row(
           children: <Widget>[
             Padding(
-              child: Text('Or sign with email and password', style: TextStyle(color: currentTheme.primaryColor)),
+              child: Text('Or sign with email and password'),
               padding: EdgeInsets.all(10),
             )
           ],

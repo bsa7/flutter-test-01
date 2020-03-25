@@ -23,7 +23,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> with SingleTicker
     authController ??= AuthController(setState: setState);
 
     return Scaffold(
-      backgroundColor: currentTheme.backgroundColor,
+      // backgroundColor: currentTheme.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

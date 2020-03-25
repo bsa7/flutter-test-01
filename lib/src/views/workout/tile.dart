@@ -24,7 +24,7 @@ Widget tile({ BuildContext context, Workout workout }) {
   return ListTile(
     contentPadding: EdgeInsets.symmetric(horizontal: 10),
     leading: Container(
-      child: Icon(Icons.fitness_center, color: currentTheme.textTheme.headline1.color),
+      child: Icon(Icons.fitness_center),
       decoration: BoxDecoration(
         border: Border(
           right: BorderSide(color: currentTheme.primaryColor, width: 1)
@@ -56,6 +56,6 @@ Widget tile({ BuildContext context, Workout workout }) {
       workout.title,
       style: currentTheme.textTheme.headline6,
     ),
-    trailing: Icon(Icons.keyboard_arrow_right, color: currentTheme.textTheme.headline1.color),
+    trailing: Icon(Icons.keyboard_arrow_right),
   );
 }

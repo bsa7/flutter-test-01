@@ -10,7 +10,7 @@ Widget authProvidersBar({ AuthController controller, BuildContext context }) {
       Row(
         children: <Widget>[
           Padding(
-            child: Text('Sign with', style: TextStyle(color: currentTheme.primaryColor)),
+            child: Text('Sign with'),
             padding: EdgeInsets.all(10),
           )
         ],
@@ -23,7 +23,6 @@ Widget authProvidersBar({ AuthController controller, BuildContext context }) {
               child: MaterialButton(
                 onPressed: controller.signInWithGoogle,
                 color: Colors.blue,
-                textColor: currentTheme.primaryColor,
                 child: Icon(
                   CustomIcons.google_1,
                   size: 24,
@@ -39,7 +38,6 @@ Widget authProvidersBar({ AuthController controller, BuildContext context }) {
               child: MaterialButton(
                 onPressed: controller.signInWithFacebook,
                 color: Color(0xff2851a3),
-                textColor: currentTheme.primaryColor,
                 child: Icon(
                   CustomIcons.facebook,
                   size: 24,

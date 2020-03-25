@@ -19,17 +19,17 @@ Widget input({ BuildContext context, TextEditingController controller, Icon icon
         prefixIcon: Padding(
           child: IconTheme(
             child: icon,
-            data: IconThemeData(color: currentTheme.primaryColor),
+            data: currentTheme.iconTheme,
           ),
           padding: EdgeInsets.only(left: 10, right: 10),
         ),
       ),
       obscureText: obscure,
       onChanged: onChanged,
-      style: TextStyle(
-        color: currentTheme.primaryColor,
-        fontSize: 20,
-      ),
+      // style: TextStyle(
+      //   color: currentTheme.primaryColor,
+      //   fontSize: 20,
+      // ),
     ),
   );
 }
