@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-Widget input({ TextEditingController controller, Icon icon, String hint, bool obscure, Function onChanged }) {
+Widget input({ BuildContext context, TextEditingController controller, Icon icon, String hint, bool obscure, Function onChanged }) {
+  final ThemeData currentTheme = Theme.of(context);
   return Container(
     padding: EdgeInsets.only(left: 20, right: 20),
     child: TextField(
       controller: controller,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white54, width: 1),
+          borderSide: BorderSide(color: currentTheme.primaryColor, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white, width: 3),
+          borderSide: BorderSide(color: currentTheme.primaryColor, width: 3),
         ),
-        hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white30),
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: currentTheme.hintColor),
         hintText: hint,
         prefixIcon: Padding(
           child: IconTheme(
             child: icon,
-            data: IconThemeData(color: Colors.white),
+            data: IconThemeData(color: currentTheme.primaryColor),
           ),
           padding: EdgeInsets.only(left: 10, right: 10),
         ),
@@ -26,8 +27,8 @@ Widget input({ TextEditingController controller, Icon icon, String hint, bool ob
       obscureText: obscure,
       onChanged: onChanged,
       style: TextStyle(
+        color: currentTheme.primaryColor,
         fontSize: 20,
-        color: Colors.white,
       ),
     ),
   );

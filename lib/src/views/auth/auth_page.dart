@@ -19,27 +19,27 @@ class _AuthorizationPageState extends State<AuthorizationPage> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    var themeBackgroundColor = Theme.of(context).primaryColor;
+    final ThemeData currentTheme = Theme.of(context);
     authController ??= AuthController(setState: setState);
 
     return Scaffold(
-      backgroundColor: themeBackgroundColor,
+      backgroundColor: currentTheme.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            logo(),
+            logo(context: context),
             authProvidersBar(
-              controller: authController,
               context: context,
+              controller: authController,
             ),
             authForm(
               context: context,
-              label: authController.showModeLabel,
               controller: authController,
+              label: authController.showModeLabel,
             ),
             authFormNavigationBar(
-              controller: authController,
               context: context,
+              controller: authController,
             ),
           ],
         ),

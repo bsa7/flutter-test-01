@@ -3,12 +3,14 @@ import 'package:hw_4/src/controllers/auth/auth_controller.dart';
 import 'package:hw_4/src/assets/fonts/custom_icons.dart';
 
 Widget authProvidersBar({ AuthController controller, BuildContext context }) {
+  final ThemeData currentTheme = Theme.of(context);
+
   return Column(
     children: <Widget>[
       Row(
         children: <Widget>[
           Padding(
-            child: Text('Sign with', style: TextStyle(color: Colors.white)),
+            child: Text('Sign with', style: TextStyle(color: currentTheme.primaryColor)),
             padding: EdgeInsets.all(10),
           )
         ],
@@ -21,7 +23,7 @@ Widget authProvidersBar({ AuthController controller, BuildContext context }) {
               child: MaterialButton(
                 onPressed: controller.signInWithGoogle,
                 color: Colors.blue,
-                textColor: Colors.white,
+                textColor: currentTheme.primaryColor,
                 child: Icon(
                   CustomIcons.google_1,
                   size: 24,
@@ -37,7 +39,7 @@ Widget authProvidersBar({ AuthController controller, BuildContext context }) {
               child: MaterialButton(
                 onPressed: controller.signInWithFacebook,
                 color: Color(0xff2851a3),
-                textColor: Colors.white,
+                textColor: currentTheme.primaryColor,
                 child: Icon(
                   CustomIcons.facebook,
                   size: 24,

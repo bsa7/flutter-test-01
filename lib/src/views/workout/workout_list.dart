@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hw_4/src/models/workout.dart';
-import 'tile_subtitle.dart';
+import 'tile.dart';
 
 
 class WorkoutList extends StatelessWidget {
@@ -24,7 +24,7 @@ class WorkoutList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).textTheme.headline1.color;
+    final ThemeData currentTheme = Theme.of(context);
 
     return Container(
       child: ListView.builder(
@@ -34,32 +34,13 @@ class WorkoutList extends StatelessWidget {
             elevation: 2.0,
             margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Container(
-              decoration: BoxDecoration(color: Color.fromRGBO(50, 65, 85, 0.9)),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                leading: Container(
-                  child: Icon(Icons.fitness_center, color: primaryColor),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      right: BorderSide(color: Colors.white24, width: 1)
-                    )
-                  ),
-                  padding: EdgeInsets.only(right: 12),
-                ),
-                subtitle: tileSubtitle(context, workouts[i]),
-                title: Text(
-                  workouts[i].title,
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                trailing: Icon(Icons.keyboard_arrow_right, color: primaryColor),
-              ),
+              decoration: BoxDecoration(color: currentTheme.backgroundColor),
+              child: tile(context: context, workout: workouts[i])
             ),
           );
         }
       ),
+      color: currentTheme.backgroundColor,
     );
   }
 }

@@ -237,4 +237,8 @@ class AuthController extends ApplicationController {
     });
     return password;
   }
+
+  void logoutUser() {
+    AuthService().logout();
+  }
 }

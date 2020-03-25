@@ -6,13 +6,15 @@ import 'package:hw_4/src/views/shared/input.dart';
 import 'package:hw_4/src/constants/auth.dart';
 
 Widget authForm({ BuildContext context, String label, AuthController controller}) {
+  final ThemeData currentTheme = Theme.of(context);
+
   if (controller.validationErrorsPresent) Fluttertoast.showToast(
     msg: controller.validationErrorMessage,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.CENTER,
     timeInSecForIos: 3,
     backgroundColor: Colors.red,
-    textColor: Colors.white,
+    textColor: currentTheme.primaryColor,
     fontSize: 16.0,
   );
 
@@ -23,7 +25,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
         Row(
           children: <Widget>[
             Padding(
-              child: Text('Or sign with email and password', style: TextStyle(color: Colors.white)),
+              child: Text('Or sign with email and password', style: TextStyle(color: currentTheme.primaryColor)),
               padding: EdgeInsets.all(10),
             )
           ],
@@ -32,6 +34,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
         Padding(
           padding: EdgeInsets.only(bottom: 20, top: 10),
           child: input(
+            context: context,
             controller: controller.emailController,
             hint: 'EMAIL',
             icon: Icon(Icons.email),
@@ -43,6 +46,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
             child: Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: input(
+                context: context,
                 controller: controller.passwordController,
                 hint: 'PASSWORD',
                 icon: Icon(Icons.lock),
@@ -60,6 +64,7 @@ Widget authForm({ BuildContext context, String label, AuthController controller}
             child: Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: input(
+                context: context,
                 controller: controller.passwordConfirmationController,
                 hint: 'CONFIRM PASSWORD',
                 icon: Icon(controller.passwordConfirmed ? Icons.check : Icons.lock_open),

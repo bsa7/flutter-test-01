@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 Widget button({ bool actionInProgress, BuildContext context, String text, void onPressed() }) {
+  final ThemeData currentTheme = Theme.of(context);
+
   return RaisedButton(
-    color: Colors.white,
+    color: currentTheme.primaryColor,
     child: Text(
       actionInProgress ? 'WAIT PLEASE...' : text,
       style: TextStyle(
-        color: Theme.of(context).primaryColor,
+        color: currentTheme.backgroundColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
     ),
 
-    highlightColor: Theme.of(context).primaryColor,
+    highlightColor: currentTheme.backgroundColor,
     onPressed: actionInProgress ? null : onPressed,
-    splashColor: Theme.of(context).primaryColor,
+    splashColor: currentTheme.backgroundColor,
   );
 }
