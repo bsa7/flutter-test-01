@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hw_4/src/models/workout.dart';
 import 'tile.dart';
 
-
 class WorkoutList extends StatelessWidget {
   final workouts = <Workout>[
     Workout(author: 'Max1', description: 'Test workout1', level: 'Beginner', title: 'Test1'),
@@ -34,7 +33,7 @@ class WorkoutList extends StatelessWidget {
             elevation: 2.0,
             margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Container(
-              child: tile(context: context, workout: workouts[i])
+              child: Tile(workout: workouts[i])
             ),
           );
         }

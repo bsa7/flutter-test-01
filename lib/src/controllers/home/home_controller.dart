@@ -1,27 +1,28 @@
-import 'package:hw_4/src/controllers/application_controller.dart';
+import 'package:flutter/material.dart';
+typedef void StatefullDataUpdater();
+typedef void StateUpdater(StatefullDataUpdater callback);
 
-class HomeController extends ApplicationController {
-  bool sidebarMenuOpened;
+class HomeController {
+  ThemeMode themeMode;
+  StateUpdater setState;
+
   static final HomeController _homeController = HomeController._internal();
 
-  factory HomeController({ StateUpdater setState }) {
-    _homeController.sidebarMenuOpened = false;
-    _homeController.setState = setState;
-
+  factory HomeController() {
     return _homeController;
   }
 
   HomeController._internal();
 
-  void openMenu() {
+  void setDarkTheme() {
     setState(() {
-      sidebarMenuOpened = true;
+      this.themeMode = ThemeMode.dark;
     });
   }
 
-  void closeMenu() {
+  void setLightTheme() {
     setState(() {
-      sidebarMenuOpened = false;
+      this.themeMode = ThemeMode.light;
     });
   }
 }

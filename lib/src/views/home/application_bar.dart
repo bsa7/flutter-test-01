@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hw_4/src/controllers/auth/auth_controller.dart';
+import 'package:hw_4/src/services/auth.dart';
 
 class ApplicationBar extends StatelessWidget with PreferredSizeWidget {
-  final AuthController authController;
-  ApplicationBar({ this.authController });
+  ApplicationBar();
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class ApplicationBar extends StatelessWidget with PreferredSizeWidget {
         Padding(
           child: GestureDetector(
             child: Icon(Icons.exit_to_app),
-            onTap: authController.logoutUser,
+            onTap: AuthService().logout,
           ),
           padding: EdgeInsets.all(10),
         ),

@@ -3,8 +3,11 @@ import 'package:hw_4/src/controllers/application_controller.dart';
 import 'package:hw_4/src/models/user.dart';
 import 'package:hw_4/src/services/auth.dart';
 import 'package:hw_4/src/constants/auth.dart';
+typedef void StatefullDataUpdater();
+typedef void StateUpdater(StatefullDataUpdater callback);
 
 class AuthController extends ApplicationController {
+  StateUpdater setState;
   String email;
   String password;
   String passwordConfirmation;
@@ -18,8 +21,7 @@ class AuthController extends ApplicationController {
   TextEditingController passwordConfirmationController = TextEditingController();
   static final AuthController _authController = AuthController._internal();
 
-  factory AuthController({ StateUpdater setState }) {
-    _authController.setState = setState;
+  factory AuthController() {
     _authController.authInProgress = false;
     _authController.email = '';
     _authController.password = '';
@@ -236,9 +238,5 @@ class AuthController extends ApplicationController {
       }
     });
     return password;
-  }
-
-  void logoutUser() {
-    AuthService().logout();
   }
 }

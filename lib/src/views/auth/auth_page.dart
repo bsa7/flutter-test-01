@@ -19,7 +19,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    authController ??= AuthController(setState: setState);
+    authController ??= AuthController();
+    authController.setState ??= setState;
 
     return Scaffold(
       body: SingleChildScrollView(
