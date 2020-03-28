@@ -3,11 +3,8 @@ import 'package:hw_4/src/controllers/application_controller.dart';
 import 'package:hw_4/src/models/user.dart';
 import 'package:hw_4/src/services/auth.dart';
 import 'package:hw_4/src/constants/auth.dart';
-typedef void StatefullDataUpdater();
-typedef void StateUpdater(StatefullDataUpdater callback);
 
 class AuthController extends ApplicationController {
-  StateUpdater setState;
   String email;
   String password;
   String passwordConfirmation;
@@ -22,13 +19,13 @@ class AuthController extends ApplicationController {
   static final AuthController _authController = AuthController._internal();
 
   factory AuthController() {
-    _authController.authInProgress = false;
-    _authController.email = '';
-    _authController.password = '';
-    _authController.passwordConfirmation = '';
-    _authController.passwordConfirmed = false;
-    _authController.showMode = ShowMode.login;
-    _authController._validationErrorMessage = '';
+    _authController.authInProgress ??= false;
+    _authController.email ??= '';
+    _authController.password ??= '';
+    _authController.passwordConfirmation ??= '';
+    _authController.passwordConfirmed ??= false;
+    _authController.showMode ??= ShowMode.login;
+    _authController._validationErrorMessage ??= '';
 
     return _authController;
   }
@@ -212,25 +209,25 @@ class AuthController extends ApplicationController {
   }
 
   void showLoginForm() {
-    super.setState(() {
+    this.setState(() {
       this.showMode = ShowMode.login;
     });
   }
 
   void showRegisterForm() {
-    super.setState(() {
+    this.setState(() {
       this.showMode = ShowMode.registration;
     });
   }
 
-  void showForgottePasswordForm() {
-    super.setState(() {
+  void showForgottenPasswordForm() {
+    this.setState(() {
       this.showMode = ShowMode.forgottenPassword;
     });
   }
 
   String onEditPassword(String password) {
-    super.setState(() {
+    this.setState(() {
       if (this.passwordController.text == this.passwordConfirmationController.text) {
         this.passwordConfirmed = true;
       } else {

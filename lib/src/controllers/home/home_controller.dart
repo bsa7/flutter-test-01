@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-typedef void StatefullDataUpdater();
-typedef void StateUpdater(StatefullDataUpdater callback);
+import 'package:hw_4/src/controllers/application_controller.dart';
 
-class HomeController {
+class HomeController extends ApplicationController {
   ThemeMode themeMode;
-  StateUpdater setState;
 
   static final HomeController _homeController = HomeController._internal();
 

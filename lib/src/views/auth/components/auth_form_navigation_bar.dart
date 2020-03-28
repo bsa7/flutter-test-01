@@ -2,33 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:hw_4/src/controllers/auth/auth_controller.dart';
 import 'package:hw_4/src/constants/auth.dart';
 
-Widget authFormNavigationBar({ AuthController controller, BuildContext context }) {
-  // final ThemeData currentTheme = Theme.of(context);
+class AuthFormNavigationBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final AuthController authController = AuthController();
 
-  return Column(
-    children: <Widget>[
-      Padding(
-        child: GestureDetector(
-          child: Text(
-            controller.showMode == ShowMode.login ? 'Not registered yet? Register!' : 'Already registered? Login!',
-            style: TextStyle(fontSize: 20),
+    return Column(
+      children: <Widget>[
+        Padding(
+          child: GestureDetector(
+            child: Text(
+              authController.showMode == ShowMode.login ? 'Not registered yet? Register!' : 'Already registered? Login!',
+              style: TextStyle(fontSize: 20),
+            ),
+            onTap: authController.showMode == ShowMode.login ? authController.showRegisterForm : authController.showLoginForm,
           ),
-          onTap: () {
-            controller.showMode == ShowMode.login ? controller.showRegisterForm() : controller.showLoginForm();
-          },
+          padding: EdgeInsets.all(10),
         ),
-        padding: EdgeInsets.all(10),
-      ),
-      if (controller.showMode != ShowMode.forgottenPassword) Padding(
-        child: GestureDetector(
-          child: Text(
-            'Forgotten password?',
-            style: TextStyle(fontSize: 20),
+        if (authController.showMode != ShowMode.forgottenPassword) Padding(
+          child: GestureDetector(
+            child: Text(
+              'Forgotten password?',
+              style: TextStyle(fontSize: 20),
+            ),
+            onTap: authController.showForgottenPasswordForm,
           ),
-          onTap: controller.showForgottePasswordForm,
+          padding: EdgeInsets.all(10),
         ),
-        padding: EdgeInsets.all(10),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

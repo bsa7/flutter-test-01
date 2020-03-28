@@ -13,33 +13,21 @@ class AuthorizationPage extends StatefulWidget {
   _AuthorizationPageState createState() => _AuthorizationPageState();
 }
 
-class _AuthorizationPageState extends State<AuthorizationPage> with SingleTickerProviderStateMixin {
-
-  var authController;
+class _AuthorizationPageState extends State<AuthorizationPage> {
 
   @override
   Widget build(BuildContext context) {
-    authController ??= AuthController();
-    authController.setState ??= setState;
+    AuthController authController = AuthController();
+    authController.setState = setState;
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            logo(context: context),
-            authProvidersBar(
-              context: context,
-              controller: authController,
-            ),
-            authForm(
-              context: context,
-              controller: authController,
-              label: authController.showModeLabel,
-            ),
-            authFormNavigationBar(
-              context: context,
-              controller: authController,
-            ),
+            Logo(),
+            AuthProvidersBar(),
+            AuthForm(label: authController.showModeLabel),
+            AuthFormNavigationBar(),
           ],
         ),
         scrollDirection: Axis.vertical,
