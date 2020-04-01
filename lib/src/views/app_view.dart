@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hw_4/src/constants/defaultTheme.dart';
+import 'package:hw_4/src/constants/routes.dart';
 import 'package:hw_4/src/controllers/home/home_controller.dart';
 import 'package:hw_4/src/services/auth.dart';
-import 'package:hw_4/src/views/landing_page.dart';
 import 'package:provider/provider.dart';
 
 class AppView extends StatefulWidget {
@@ -29,10 +29,13 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
       });
     });
 
+    print('#32, routes: $routes');
+
     return StreamProvider(
       child: MaterialApp(
         darkTheme: darkThemeData,
-        home: LandingPage(),
+        initialRoute: '/',
+        routes: routes,
         title: 'APP Name',
         theme: lightThemeData,
         themeMode: homeController.themeMode,
